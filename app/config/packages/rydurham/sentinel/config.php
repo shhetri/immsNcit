@@ -25,11 +25,11 @@ return array(
 
 		'logout'	=> 'logout',
 
-		'register'	=> 'register',
+		'register'	=> 'user/register',
 
-		'resend'	=> 'resend',
+		'resend'	=> 'user/resend',
 
-		'forgot'	=> 'forgot',
+		'forgot'	=> 'user/forgot',
 
 		),
 
