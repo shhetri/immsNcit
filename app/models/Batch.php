@@ -13,6 +13,9 @@
 
 class Batch extends Eloquent{
 
+    /**
+     * @var array Contains column names that can be filled by user
+     */
     protected $fillable = ['batch_no,batch_year'];
 
 } 
