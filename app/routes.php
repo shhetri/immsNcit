@@ -22,3 +22,9 @@ Route::get('/home',[
             return Sentry::getUser()->email;
         }
 ]);
+Route::group(
+    ['before' => 'Sentinel\auth|check_role'],
+    function () {
+        Route::resource('batches', 'BatchesController');
+    }
+);
