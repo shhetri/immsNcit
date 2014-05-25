@@ -12,6 +12,7 @@
 		<!-- Bootstrap 3.0: Latest compiled and minified CSS -->
 		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
 		<link rel="stylesheet" href="{{ asset('packages/rydurham/sentinel/css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('packages/rydurham/sentinel/css/simple-sidebar.css') }}">
 
 		<!-- Optional theme -->
 		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
@@ -45,7 +46,7 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	          <a class="navbar-brand" href="{{ URL::route('home') }}">IMMS</a>
+	          <a class="navbar-brand" style="padding: 0 20px 0 10px" href="{{ URL::route('home') }}"><img src="{{ asset('img/logo.png') }}" class="img img-responsive" width="48px" height="48px"></a>
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
@@ -69,19 +70,63 @@
 	      </div>
 	    </div>
 		<!-- ./ navbar -->
+        @if(Sentry::check() && Sentry::getUser()->hasAccess('admin'))
+            <div id="wrapper">
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-brand">
+                            <h3 class="text-success">Manage</h3>
+                        </li>
+                        <li {{ (Request::is('batches*'))? 'class="active"' : '' }}>
+                            <a href="{{ route('batches.index') }}">Batch</a>
+                        </li>
+                        <li>
+                            <a href="#">Shortcuts</a>
+                        </li>
+                        <li>
+                            <a href="#">Overview</a>
+                        </li>
+                        <li>
+                            <a href="#">Events</a>
+                        </li>
+                        <li>
+                            <a href="#">About</a>
+                        </li>
+                        <li>
+                            <a href="#">Services</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="page-content-wrapper">
+                    <div class="page-content inset">
+                        <!-- Notifications -->
+                        @include('Sentinel::layouts/notifications')
+                        <!-- ./ notifications -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Content -->
+                                @yield('content')
+                                <!-- ./ content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+            <div class="container">
+                <!-- Notifications -->
+                @include('Sentinel::layouts/notifications')
+                <!-- ./ notifications -->
+                <!-- Content -->
 
-		<!-- Container -->
-		<div class="container">
-			<!-- Notifications -->
-			@include('Sentinel::layouts/notifications')
-			<!-- ./ notifications -->
-
-			<!-- Content -->
-			@yield('content')
-			<!-- ./ content -->
-		</div>
-
-		<!-- ./ container -->
+                @yield('content')
+                <!-- ./ content -->
+            </div>
+        @endif
 
 		<!-- Javascripts
 		================================================== -->
