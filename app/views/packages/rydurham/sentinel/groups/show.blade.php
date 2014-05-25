@@ -19,7 +19,7 @@ View Group
 	    </ul>
 	</div>
 	<div class="col-md-2">
-		<button class="btn btn-primary" onClick="location.href='{{ action('Sentinel\GroupController@edit', array($group->id)) }}'">Edit Group</button>
+		<button class="btn btn-primary {{ (isset($group['permissions']['super admin'])) ? 'disabled' : '' }}" onClick="location.href='{{ action('Sentinel\GroupController@edit', array($group->id)) }}'">Edit Group</button>
 	</div> 
 </div>
 <hr />

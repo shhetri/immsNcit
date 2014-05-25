@@ -55,7 +55,7 @@ Profile</h4>
         </div>
 
         @if (Sentry::getUser()->hasAccess('super admin'))
-        <div class="form-group">
+        <div class="form-group {{ ($user->hasAccess('super admin'))? 'hidden' : '' }}">
             {{ Form::label('edit_memberships', 'Group Memberships', array('class' => 'col-sm-2 control-label'))}}
             <div class="col-sm-10">
                 @foreach ($allGroups as $group)
