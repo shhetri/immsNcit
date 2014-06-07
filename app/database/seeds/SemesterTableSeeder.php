@@ -12,6 +12,8 @@ class SemesterTableSeeder extends Seeder{
 
     public function run()
     {
+        Eloquent::unguard();
+
         DB::table('semesters')->delete();
 
         Semester::create([
@@ -48,4 +50,4 @@ class SemesterTableSeeder extends Seeder{
             ]);
     }
 
-} 
+}
