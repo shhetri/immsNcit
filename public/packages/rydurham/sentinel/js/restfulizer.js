@@ -32,6 +32,7 @@ $(function(){
         return methodForm
     })
     .removeAttr('href')
-    .attr('onclick',' if ($(this).hasClass(\'action_confirm\')) { if(confirm("Are you sure you want to do this?")) { $(this).find("form").submit(); } } else { $(this).find("form").submit(); }');
+    .attr('onclick',' if ($(this).hasClass(\'action_confirm\')) { var $this = this; bootbox.confirm("Are you sure?",function(result){ if(result) {$($this).find("form").submit();} } ); } else { $(this).find("form").submit(); }');
+    //.attr('onclick',' if ($(this).hasClass(\'action_confirm\')) { if(confirm("Are you sure you want to do this?")) { $(this).find("form").submit(); } } else { $(this).find("form").submit(); }');
 });
 
