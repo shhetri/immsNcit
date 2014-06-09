@@ -44,9 +44,9 @@ return array(
 	| 
 	*/
 
-	'post_login' 	=> 'home',
+	'post_login' 	=> 'admin.dashboard',
 
-	'post_logout' 	=> 'home',
+	'post_logout' 	=> 'Sentinel\login',
 
 	/*
 	|--------------------------------------------------------------------------
