@@ -15,7 +15,7 @@ Route::filter(
     'check_loggedIn',
     function () {
         if (Sentry::check()) {
-            return Redirect::route('home');
+            return Redirect::route('admin.dashboard');
         }
     }
 );
@@ -24,14 +24,14 @@ Route::filter(
     'check_role',
     function () {
         if (!Sentry::getUser()->hasAccess('super admin') && !Sentry::getUser()->hasAccess('admin')) {
-            return Redirect::route('home');
+            return Redirect::route('teacher.dashboard');
         }
     }
 );
 
 Route::filter('check_super_admin',function(){
         if( ! Sentry::getUser()->hasAccess('super admin')){
-            return Redirect::route('home');
+            return Redirect::route('admin.dashboard');
         }
     });
 

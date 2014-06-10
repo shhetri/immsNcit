@@ -14,9 +14,10 @@
 		<link rel="stylesheet" href="{{ asset('packages/rydurham/sentinel/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('packages/rydurham/sentinel/css/simple-sidebar.css') }}">
 
-		<!-- Optional theme -->
-		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
-		<link rel="stylesheet" href="{{ asset('packages/rydurham/sentinel/css/bootstrap-theme.min.css') }}">
+        <!-- Optional theme -->
+        <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
+        <link rel="stylesheet" href="{{ asset('packages/rydurham/sentinel/css/bootstrap-theme.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/myStyle.css') }}">
 
 		<style>
 		@section('styles')
@@ -46,7 +47,7 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	          <a class="navbar-brand" style="padding: 0 20px 0 10px" href="{{ URL::route('home') }}"><img src="{{ asset('img/logo.png') }}" class="img img-responsive" width="48px" height="48px"></a>
+	          <a class="navbar-brand" style="padding: 0 20px 0 10px" href="{{ URL::route('admin.dashboard') }}"><img src="{{ asset('img/logo.png') }}" class="img img-responsive" width="48px" height="48px"></a>
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
@@ -78,8 +79,8 @@
                         <li class="sidebar-brand">
                             <h3 class="text-success">Manage</h3>
                         </li>
-                        <li {{ (Request::is('batches*'))? 'class="active"' : '' }}>
-                            <a href="{{ route('batches.index') }}">Batch</a>
+                        <li {{ (Request::is('teachers*'))? 'class="active"' : '' }}>
+                            <a href="{{ route('teachers.index') }}">Teacher</a>
                         </li>
                         <li>
                             <a href="#">Shortcuts</a>

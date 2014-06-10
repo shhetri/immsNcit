@@ -16,15 +16,27 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-Route::get('/home',[
-        'as'    =>  'home',
-        function(){
-            return Sentry::getUser()->email;
-        }
-]);
+Route::group(
+    ['before'   =>  'Sentinel\auth'],
+    function(){
+        Route::get('teacher/dashboard', [
+                'as'    =>'teacher.dashboard',
+                function(){
+                    return View::make('layout.teacher.dashboard');
+                }
+            ]);
+    }
+);
+
 Route::group(
     ['before' => 'Sentinel\auth|check_role'],
     function () {
-        Route::resource('batches', 'BatchesController');
+        Route::get('admin/dashboard',[
+                'as'    =>  'admin.dashboard',
+                function(){
+                    return View::make('layout.admin.dashboard');
+                }
+            ]);
+        Route::resource('teachers', 'TeacherController');
     }
 );
