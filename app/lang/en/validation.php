@@ -101,4 +101,15 @@ return array(
 
 	'attributes' => array(),
 
+	/*
+    |--------------------------------------------------------------------------
+    | Custom Validation Rules
+    |--------------------------------------------------------------------------
+    |
+    | Custom rules created in app/validators.php
+    |
+    */
+
+    "alpha_num_spaces"  =>  "The :attribute may only contain letters, numbers(with decimal digit) and spaces.",
+
 );
