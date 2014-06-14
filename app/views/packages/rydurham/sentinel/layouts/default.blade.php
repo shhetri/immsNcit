@@ -82,8 +82,8 @@
                         <li {{ (Request::is('teachers*'))? 'class="active"' : '' }}>
                             <a href="{{ route('teachers.index') }}">Teacher</a>
                         </li>
-                        <li>
-                            <a href="#">Shortcuts</a>
+                        <li {{ (Request::is('subjects*'))? 'class="active"' : '' }}>
+                        <a href="{{ route('subjects.index') }}">Subject</a>
                         </li>
                         <li>
                             <a href="#">Overview</a>
