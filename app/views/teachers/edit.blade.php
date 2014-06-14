@@ -21,10 +21,6 @@
         </div>
         <div class="form-group {{ ($errors->has('email'))? 'has-error' : '' }}">
             {{ Form::label('email', 'Email', ['class' => 'control-label']) }}
-            <label class="pull-right">
-            	{{ Form::checkbox('edit_email', '1', null,  ['id' => 'Edit Email','class'=>'checkboxEmail']) }}
-            	<label>Edit Email?</label>
-            </label>
             {{ Form::email('email', null, ['class' => 'form-control']) }}
             {{ $errors->first('email','<p class="text-danger">:message</p>') }}
         </div>

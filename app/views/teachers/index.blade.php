@@ -12,6 +12,7 @@
 <div class="table-responsive">
     <table class="table table-hover table-striped">
         <tr>
+            <th>SN</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
@@ -22,6 +23,9 @@
         </tr>
         @foreach ($allTeachers as $teacher)
         <tr>
+            <td>
+                {{ isset($count)? ++$count:$count=$allTeachers->getCurrentPage()*10-9 }}
+            </td>
             <td>
                 {{ ucfirst($teacher->first_name) }}
             </td>
