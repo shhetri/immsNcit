@@ -31,6 +31,7 @@ app.controller('TeacherController', function ($rootScope, $scope, teacherService
 
             // number of pages of users
             $rootScope.main.pages = result.last_page;
+            $scope.main.total = result.total;
         });
     };
 });
@@ -51,6 +52,7 @@ app.controller('ClassController', function ($rootScope, $scope, classService) {
 
             // number of pages of users
             $rootScope.main.pages = result.last_page;
+            $scope.main.total = result.total;
         });
     };
 });
@@ -71,6 +73,7 @@ app.controller('SubjectController', function ($rootScope, $scope, subjectService
 
             // number of pages of users
             $rootScope.main.pages = result.last_page;
+            $scope.main.total = result.total;
         });
     };
 });

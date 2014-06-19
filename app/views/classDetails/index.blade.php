@@ -10,7 +10,7 @@
     <div data-ng-if="main.classes.length!=0">
         <div class="form-group">
             <a href="{{ route('classes.create') }}" class="btn btn-primary">Add New</a>
-
+            <span class="text-muted col-xs-offset-3">Total classes : <span class="badge">@{{ main.total }} </span></span>
             <div class="input-group col-xs-4 pull-right">
                 <input type="search" data-ng-model="searchClass" class="form-control" placeholder="Search">
                 <span class="input-group-btn">

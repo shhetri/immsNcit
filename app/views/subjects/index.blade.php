@@ -10,6 +10,7 @@
     <div data-ng-if="main.subjects.length!=0">
         <div class="form-group">
             <a href="{{ route('subjects.create') }}" class="btn btn-primary">Add New</a>
+            <span class="text-muted col-xs-offset-3">Total subjects : <span class="badge">@{{ main.total }} </span></span>
             <div class="input-group col-xs-4 pull-right">
                 <input type="search" data-ng-model="searchSubject" class="form-control" placeholder="Search">
                 <span class="input-group-btn">
