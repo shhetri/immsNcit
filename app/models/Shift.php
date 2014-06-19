@@ -13,4 +13,13 @@
          * @var array Contains column names that can be filled by user
          */
         protected $fillable = ['shift'];
+
+        /**
+         * @brief Establish many-to-one relationship with ClassDetail model
+         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         */
+        public function classDetail()
+        {
+            return $this->hasMany('ClassDetail');
+        }
     }
