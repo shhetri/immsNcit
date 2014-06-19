@@ -43,7 +43,8 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-	//
+	 $response->header("Pragma", "no-cache");
+     $response->header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
 });
 
 /*
