@@ -16,4 +16,12 @@
          */
         protected $fillable = ['semester_name', 'semester_no'];
 
+        /**
+         * @brief Establish many-to-one relationship with ClassDetail model
+         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         */
+        public function classDetail()
+        {
+            return $this->hasMany('ClassDetail');
+        }
     }
