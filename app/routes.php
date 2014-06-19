@@ -38,14 +38,27 @@
             ]);
 
             Route::resource('teachers', 'TeacherController');
+            Route::get('all/teachers',[
+                'as'    =>  'all.teachers',
+                'uses'  =>  'TeacherController@getAllTeachers'
+            ]);
 
             Route::resource('subjects', 'SubjectController');
+            Route::get('all/subjects',[
+                'as'    =>  'all.subjects',
+                'uses'  =>  'SubjectController@getAllSubjects'
+            ]);
+
+            Route::resource('classes', 'ClassDetailController');
+            Route::get('all/classes',[
+                'as'    =>  'all.classes',
+                'uses'  =>  'ClassDetailController@getAllClasses'
+            ]);
         }
     );
 
     Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 
-Route::any('/',function()
-{
-    return "anything";
-});
+    Route::any('/', function () {
+        return "anything";
+    });
