@@ -5,54 +5,46 @@
     Teachers
 @stop
 @section('content')
-@if( ! $allTeachers->isEmpty())
-<div class="form-group">
-    <a href="{{ route('teachers.create') }}" class="btn btn-primary">Add New</a>
-</div>
-<div class="table-responsive">
-    <table class="table table-hover table-striped">
-        <tr>
-            <th>SN</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone No.</th>
-            <th>Status</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        @foreach ($allTeachers as $teacher)
-        <tr>
-            <td>
-                {{ isset($count)? ++$count:$count=$allTeachers->getCurrentPage()*10-9 }}
-            </td>
-            <td>
-                {{ ucfirst($teacher->first_name) }}
-            </td>
-            <td>
-                {{ ucfirst($teacher->last_name) }}
-            </td>
-            <td>
-                {{ $teacher->email }}
-            </td>
-            <td>
-                {{ $teacher->phone_no }}
-            </td>
-            <td>
-                {{ ($teacher->status==1)?'Active':'Inactive' }}
-            </td>
-            <td>
-                <a href="{{ route('teachers.edit',$teacher->id) }}"><span><i class="glyphicon glyphicon-edit"></i></span></a>
-            </td>
-            <td>
-                <a href="{{route('teachers.destroy',$teacher->id) }}" data-method="delete" data-token="{{ Session::getToken() }}" class="action_confirm"><span><i class="glyphicon glyphicon-trash"></i></span></a>
-            </td>
-        </tr>
-        @endforeach
-    </table>
-</div>
-{{ $allTeachers->links(); }}
-@else
-<p class="alert alert-info">There are no teachers to display. Please <strong><a href="{{ route('teachers.create') }}">Add</a></strong> a new teacher</p>
-@endif
+    <div data-ng-controller="TeacherController" data-ng-init="loadPage()">
+        <div data-ng-if="main.teachers.length!=0">
+        <div class="form-group">
+            <a href="{{ route('teachers.create') }}" class="btn btn-primary">Add New</a>
+            <div class="input-group col-xs-4 pull-right">
+                <input type="search" data-ng-model="searchTeacher" class="form-control" placeholder="Search">
+                <span class="input-group-btn">
+                    <button data-ng-click="searchTeacher = undefined" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                 </span>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <tr>
+                    <th>S.N</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                </tr>
+                <tr data-ng-repeat="teacher in main.teachers | filter:searchTeacher">
+                    <td>@{{ $index+1 }}</td>
+                    <td>
+                        <a data-ng-href="/teachers/@{{ teacher.id }}">@{{ teacher.first_name | capitalize }}</a>
+                    </td>
+                    <td>@{{ teacher.last_name | capitalize }}</td>
+                    <td>@{{ teacher.status }}</td>
+                    <td><a data-ng-href="/teachers/@{{ teacher.id }}/edit"><span><i class="glyphicon glyphicon-edit"></i></span></a></td>
+                </tr>
+            </table>
+        </div>
+            <ul class="pager" data-ng-hide="main.pages == 1">
+                <li><a data-ng-click='previousPage(this)'>Previous</a></li>
+                <li><a data-ng-click='nextPage(this)'>Next</a></li>
+            </ul>
+        </div>
+        <div data-ng-if="main.teachers.length==0">
+            <p class="alert alert-info">There are no teachers to display. Please <strong><a href="{{ route('teachers.create') }}">Add</a></strong> a new teacher</p>
+        </div>
+    </div>
 @stop

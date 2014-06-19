@@ -31,9 +31,7 @@
          */
         public function index()
         {
-            $allSubjects = $this->subject->orderBy('subject_name')->paginate(10);
-
-            return View::make('subjects.index', compact('allSubjects'));
+            return View::make('subjects.index');
         }
 
         /**
@@ -45,6 +43,10 @@
             return View::make('subjects.create');
         }
 
+        /**
+         * @brief Inserts new subject
+         * @return \Illuminate\Http\RedirectResponse
+         */
         public function store()
         {
             $input = Input::all();
@@ -60,6 +62,11 @@
             return Redirect::route('subjects.create')->withInput()->withErrors($this->subject->errors);
         }
 
+        /**
+         * @brief Displays a particular subject
+         * @param $id
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+         */
         public function show($id)
         {
             try {
@@ -71,6 +78,11 @@
             }
         }
 
+        /**
+         * @brief Shows form to edit a subject
+         * @param $id
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+         */
         public function edit($id)
         {
             try {
@@ -82,6 +94,11 @@
             }
         }
 
+        /**
+         * @brief Updates a particular subject
+         * @param $id
+         * @return \Illuminate\Http\RedirectResponse
+         */
         public function update($id)
         {
             $input = Input::all();
@@ -96,6 +113,11 @@
             return Redirect::route('subjects.edit', $id)->withInput()->withErrors($this->subject->errors);
         }
 
+        /**
+         * @brief Deletes a particular subject
+         * @param $id
+         * @return \Illuminate\Http\RedirectResponse
+         */
         public function destroy($id)
         {
             if ( $this->subject->find($id)->delete() ) {
@@ -105,4 +127,12 @@
             return Redirect::route('subjects.show', $id)->with('error', 'Subject could not be deleted. Please try again.');
         }
 
+        /**
+         * @brief Get all subjects on ajax call
+         * @return \Illuminate\Pagination\Paginator
+         */
+        public function getAllSubjects()
+        {
+            return $this->subject->orderBy('subject_name')->paginate(10,['id','subject_name','course_code']);
+        }
     }

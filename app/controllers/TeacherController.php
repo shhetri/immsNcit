@@ -32,9 +32,7 @@
          */
         public function index()
         {
-            $allTeachers = $this->teacher->orderBy('first_name', 'asc')->paginate(10);
-
-            return View::make('teachers.index', compact('allTeachers'));
+            return View::make('teachers.index');
         }
 
         /**
@@ -46,6 +44,10 @@
             return View::make('teachers.create');
         }
 
+        /**
+         * @brief Inserts new teacher
+         * @return \Illuminate\Http\RedirectResponse
+         */
         public function store()
         {
             $input = Input::all();
@@ -128,5 +130,14 @@
             }
 
             return Redirect::route('teachers.show', $id)->with('error', 'Teacher could not be deleted. Please try again.');
+        }
+
+        /**
+         * @brief Get teachers when ajax call made by client
+         * @return \Illuminate\Pagination\Paginator
+         */
+        public function getAllTeachers()
+        {
+            return $this->teacher->orderBy('first_name', 'asc')->paginate(10, ['id', 'first_name', 'last_name', 'status']);
         }
     }
