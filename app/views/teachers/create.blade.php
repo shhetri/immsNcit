@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('status', 'Status', ['class' => 'control-label']) }}
-            {{ Form::select('status', [1=>'Active',0=>'Inactive'] , null , ['class' => 'form-control']) }}
+            {{ Form::select('status', ['Active'=>'Active','Inactive'=>'Inactive'] , null , ['class' => 'form-control chosen-select']) }}
         </div>
         <div class="form-group">
             {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
