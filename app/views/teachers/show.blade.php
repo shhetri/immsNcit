@@ -23,7 +23,7 @@
                 <td>{{ ucfirst($teacher->last_name) }}</td>
                 <td>{{ $teacher->email }}</td>
                 <td>{{ $teacher->phone_no }}</td>
-                <td>{{ ($teacher->status==1)?'Active':'Inactive' }}</td>
+                <td>{{ $teacher->status }}</td>
                 <td>{{ link_to_route('teachers.edit','Edit',$teacher->id,['class'=>'btn btn-primary']) }}</td>
                 <td><a href="{{route('teachers.destroy',$teacher->id) }}" data-method="delete" data-token="{{ Session::getToken() }}" class="action_confirm btn btn-danger">Delete</a></td>
             </tr>
