@@ -17,35 +17,35 @@ class SemesterTableSeeder extends Seeder{
         DB::table('semesters')->delete();
 
         Semester::create([
-                'semester_name'  => 'first',
+                'semester_name'  => 'First',
                 'semester_no'   =>  1
             ]);
         Semester::create([
-                'semester_name'  => 'second',
+                'semester_name'  => 'Second',
                 'semester_no'   =>  2
             ]);
         Semester::create([
-                'semester_name'  => 'third',
+                'semester_name'  => 'Third',
                 'semester_no'   =>  3
             ]);
         Semester::create([
-                'semester_name'  => 'fourth',
+                'semester_name'  => 'Fourth',
                 'semester_no'   =>  4
             ]);
         Semester::create([
-                'semester_name'  => 'fifth',
+                'semester_name'  => 'Fifth',
                 'semester_no'   =>  5
             ]);
         Semester::create([
-                'semester_name'  => 'sixth',
+                'semester_name'  => 'Sixth',
                 'semester_no'   =>  6
             ]);
         Semester::create([
-                'semester_name'  => 'seventh',
+                'semester_name'  => 'Seventh',
                 'semester_no'   =>  7
             ]);
         Semester::create([
-                'semester_name'  => 'eighth',
+                'semester_name'  => 'Eighth',
                 'semester_no'   =>  8
             ]);
     }
