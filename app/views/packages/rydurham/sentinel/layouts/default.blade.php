@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-ng-app="app" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<title> 
@@ -16,7 +16,7 @@
 
         <!-- Optional theme -->
         <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
-        <link rel="stylesheet" href="{{ asset('packages/rydurham/sentinel/css/bootstrap-theme.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/chosen.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/myStyle.css') }}">
 
 		<style>
@@ -85,8 +85,8 @@
                         <li {{ (Request::is('subjects*'))? 'class="active"' : '' }}>
                         <a href="{{ route('subjects.index') }}">Subject</a>
                         </li>
-                        <li>
-                            <a href="#">Overview</a>
+                        <li {{ (Request::is('classes*'))? 'class="active"' : '' }}>
+                        <a href="{{ route('classes.index') }}">Class</a>
                         </li>
                         <li>
                             <a href="#">Events</a>
@@ -132,9 +132,15 @@
 		<!-- Javascripts
 		================================================== -->
 		<script src="{{ asset('packages/rydurham/sentinel/js/jquery-2.0.2.min.js') }}"></script>
+		<script src="{{asset('js/angular.min.js')}}"></script>
+		<script src="{{asset('js/chosen.jquery.min.js')}}"></script>
+		<script src="{{asset('app/app.js')}}"></script>
 		<script src="{{ asset('packages/rydurham/sentinel/js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('packages/rydurham/sentinel/js/bootbox.min.js') }}"></script>
 		<script src="{{ asset('packages/rydurham/sentinel/js/restfulizer.js') }}"></script>
 		<!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
+        <script>
+            $(".chosen-select").chosen({no_results_text: "Oops, nothing found!"});
+        </script>
 	</body>
 </html>
