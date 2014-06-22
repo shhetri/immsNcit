@@ -38,24 +38,32 @@
             ]);
 
             Route::resource('teachers', 'TeacherController');
-            Route::get('all/teachers',[
-                'as'    =>  'all.teachers',
-                'uses'  =>  'TeacherController@getAllTeachers'
+            Route::get('all/teachers', [
+                'as'   => 'all.teachers',
+                'uses' => 'TeacherController@getAllTeachers'
             ]);
 
             Route::resource('subjects', 'SubjectController');
-            Route::get('all/subjects',[
-                'as'    =>  'all.subjects',
-                'uses'  =>  'SubjectController@getAllSubjects'
+            Route::get('all/subjects', [
+                'as'   => 'all.subjects',
+                'uses' => 'SubjectController@getAllSubjects'
+            ]);
+            Route::get('subjects/{subjects}/teachers', [
+                'as'   => 'subjects.teachers',
+                'uses' => 'SubjectController@assignedTo'
+            ]);
+            Route::get('subjects/{subjects}/assigned/info', [
+                'as'   => 'subjects.teachers.assigned.info',
+                'uses' => 'SubjectController@getInfo'
             ]);
 
             Route::resource('classes', 'ClassDetailController');
-            Route::get('all/classes',[
-                'as'    =>  'all.classes',
-                'uses'  =>  'ClassDetailController@getAllClasses'
+            Route::get('all/classes', [
+                'as'   => 'all.classes',
+                'uses' => 'ClassDetailController@getAllClasses'
             ]);
 
-            Route::resource('teachers.subjects', 'AssignController',['except'=>['show','update','edit']]);
+            Route::resource('teachers.subjects', 'AssignController', ['except' => ['show', 'update', 'edit']]);
         }
     );
 
@@ -65,6 +73,6 @@
         return "anything";
     });
 
-//DB::listen(function($sql){
-//    var_dump($sql);
-//});
+    //DB::listen(function($sql){
+    //    var_dump($sql);
+    //});
