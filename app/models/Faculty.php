@@ -24,7 +24,7 @@
         }
 
         /**
-         * @brief This is an accessor (getter) which returns the full name of staff combining first name and last name
+         * @brief This is an accessor (getter) which returns the concatenation of faculty name and description
          * @return string
          */
         public function getFacultyWithDescriptionAttribute()
