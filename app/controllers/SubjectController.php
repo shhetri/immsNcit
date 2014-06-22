@@ -23,7 +23,7 @@
         public function __construct(Subject $subject)
         {
             $this->subject = $subject;
-            $this->beforeFilter('ajax', ['only' => 'getAllSubjects']);
+            $this->beforeFilter('ajax', ['only' => ['getAllSubjects', 'getInfo']]);
         }
 
         /**
@@ -134,6 +134,34 @@
          */
         public function getAllSubjects()
         {
-            return $this->subject->orderBy('subject_name')->paginate(10,['id','subject_name','course_code']);
+            return $this->subject->orderBy('subject_name')->paginate(10, ['id', 'subject_name', 'course_code']);
+        }
+
+        /**
+         * @brief Displays the view that shows all teachers assigned to the subject
+         * @param $id
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+         */
+        public function assignedTo($id)
+        {
+            try {
+                $subject = $this->subject->findOrFail($id);
+
+                return View::make('subjects.teachers', compact('subject'));
+            } catch (ModelNotFoundException $exception) {
+                return Redirect::route('subjects.index')->with('error', 'Subject not found.');
+            }
+        }
+
+        /**
+         * @brief Gets the information of teachers and classes assigned to subject
+         * @param $id
+         * @return mixed
+         */
+        public function getInfo($id)
+        {
+            $subject = $this->subject->find($id);
+
+            return $subject->teachers()->orderBy('batch', 'desc')->paginate(10, ['title', 'batch', 'first_name', 'last_name']);
         }
     }
