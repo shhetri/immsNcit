@@ -54,6 +54,8 @@
                 'as'    =>  'all.classes',
                 'uses'  =>  'ClassDetailController@getAllClasses'
             ]);
+
+            Route::resource('teachers.subjects', 'AssignController',['except'=>['show','update','edit']]);
         }
     );
 
@@ -62,3 +64,7 @@
     Route::any('/', function () {
         return "anything";
     });
+
+//DB::listen(function($sql){
+//    var_dump($sql);
+//});
