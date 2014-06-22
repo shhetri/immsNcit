@@ -23,6 +23,7 @@
         public function __construct(Subject $subject)
         {
             $this->subject = $subject;
+            $this->beforeFilter('ajax', ['only' => 'getAllSubjects']);
         }
 
         /**
