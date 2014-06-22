@@ -27,6 +27,7 @@
                     <th>Last Name</th>
                     <th>Status</th>
                     <th>Edit</th>
+                    <th class="text-center">Assigned Subjects</th>
                 </tr>
                 <tr data-ng-repeat="teacher in main.teachers | filter:searchTeacher">
                     <td>@{{ $index+1 }}</td>
@@ -36,6 +37,7 @@
                     <td>@{{ teacher.last_name | capitalize }}</td>
                     <td>@{{ teacher.status }}</td>
                     <td><a data-ng-href="/teachers/@{{ teacher.id }}/edit"><span><i class="glyphicon glyphicon-edit"></i></span></a></td>
+                    <td class="text-center"><a data-ng-href="/teachers/@{{ teacher.id }}/subjects"><span><i class="glyphicon glyphicon-th-list"></i></span></a></td>
                 </tr>
             </table>
         </div>
