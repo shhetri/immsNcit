@@ -59,4 +59,14 @@
 
             return true;
         }
+
+        /**
+         * @brief This is an accessor (getter) which returns concatenation of class title and batch
+         * @return string
+         */
+        public function getTitleWithBatchAttribute()
+        {
+            return $this->attributes['title'] . " : " . $this->attributes['batch'];
+        }
+
     }
