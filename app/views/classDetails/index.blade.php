@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-<div data-ng-controller="ClassController" data-ng-init="loadPage()">
+<div data-ng-controller="ClassController">
     <div data-ng-if="main.classes.length!=0">
         <div class="form-group">
             <a href="{{ route('classes.create') }}" class="btn btn-primary">Add New</a>

@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-<div data-ng-controller="SubjectController" data-ng-init="loadPage()">
+<div data-ng-controller="SubjectController">
     <div data-ng-if="main.subjects.length!=0">
         <div class="form-group">
             <a href="{{ route('subjects.create') }}" class="btn btn-primary">Add New</a>
@@ -27,6 +27,7 @@
                     <th>Subject Name</th>
                     <th>Course Code</th>
                     <th>Edit</th>
+                    <th class="text-center">Assigned To</th>
                 </tr>
                 <tr data-ng-repeat="subject in main.subjects | filter:searchSubject">
                     <td>@{{ $index+1 }}</td>
@@ -35,6 +36,7 @@
                     </td>
                     <td>@{{ subject.course_code | uppercase }}</td>
                     <td><a data-ng-href="/subjects/@{{ subject.id }}/edit"><span><i class="glyphicon glyphicon-edit"></i></span></a></td>
+                    <td class="text-center"><a data-ng-href="/subjects/@{{ subject.id }}/teachers"><span><i class="glyphicon glyphicon-tasks"></i></span></a></td>
                 </tr>
             </table>
         </div>

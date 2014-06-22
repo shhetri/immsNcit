@@ -5,7 +5,7 @@
     Teachers
 @stop
 @section('content')
-    <div data-ng-controller="TeacherController" data-ng-init="loadPage()">
+    <div data-ng-controller="TeacherController">
         <div data-ng-if="main.teachers.length!=0">
         <div class="form-group">
             <a href="{{ route('teachers.create') }}" class="btn btn-primary">Add New</a>
@@ -27,7 +27,7 @@
                     <th>Last Name</th>
                     <th>Status</th>
                     <th>Edit</th>
-                    <th class="text-center">Assigned Subjects</th>
+                    <th class="text-center">Assign Subjects</th>
                 </tr>
                 <tr data-ng-repeat="teacher in main.teachers | filter:searchTeacher">
                     <td>@{{ $index+1 }}</td>
