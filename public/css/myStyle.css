@@ -4,3 +4,6 @@
 .pager li a{
     cursor: pointer;
 }
+i.glyphicon {
+    font-size: 1.4em;
+}
