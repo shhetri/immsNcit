@@ -62,7 +62,7 @@
         {
             return $this->belongsToMany('Subject')->withPivot('class_detail_id')
                 ->join('class_details', 'class_detail_id', '=', 'class_details.id');
-                //->select('class_details.title AS pivot_title','class_details.batch AS pivot_batch');
+            //->select('class_details.title AS pivot_title','class_details.batch AS pivot_batch');
         }
 
     }

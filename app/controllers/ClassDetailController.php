@@ -199,12 +199,12 @@
          */
         public function getAllClasses()
         {
-            return $this->classDetail->with(['faculty'=> function($query){
-                    $query->select(['id','faculty_name']);
-                }, 'semester'=> function($query){
-                    $query->select(['id','semester_name']);
-                }, 'shift'=>function($query){
-                    $query->select(['id','shift']);
-                }])->orderBy('batch', 'desc')->paginate(10,['id','batch','faculty_id','semester_id','shift_id']);
+            return $this->classDetail->with(['faculty' => function ($query) {
+                    $query->select(['id', 'faculty_name']);
+                }, 'semester'                          => function ($query) {
+                    $query->select(['id', 'semester_name']);
+                }, 'shift'                             => function ($query) {
+                    $query->select(['id', 'shift']);
+                }])->orderBy('batch', 'desc')->paginate(10, ['id', 'batch', 'faculty_id', 'semester_id', 'shift_id']);
         }
     }
