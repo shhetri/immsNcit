@@ -34,6 +34,8 @@ app.controller('TeacherController', function ($rootScope, $scope, teacherService
             $scope.main.total = result.total;
         });
     };
+
+    $scope.loadPage();
 });
 
 app.service('teacherService', function ($http) {
@@ -55,6 +57,8 @@ app.controller('ClassController', function ($rootScope, $scope, classService) {
             $scope.main.total = result.total;
         });
     };
+
+    $scope.loadPage();
 });
 
 app.service('classService', function ($http) {
@@ -76,11 +80,38 @@ app.controller('SubjectController', function ($rootScope, $scope, subjectService
             $scope.main.total = result.total;
         });
     };
+
+    $scope.loadPage();
 });
 
 app.service('subjectService', function ($http) {
     this.getSubjects = function (main) {
         return $http.get('/all/subjects?page=' + main.page);
+    };
+});
+
+app.controller('SubjectAssignedToController', function ($rootScope, $scope, subjectAssignedToService) {
+    $scope.loadPage = function () {
+        // You could use Restangular here with a route resource.
+        subjectAssignedToService.getTeachers($rootScope.main, $scope.id).success(function (result) {
+            // users from your api
+            $scope.main.info = result.data;
+
+            // number of pages of users
+            $rootScope.main.pages = result.last_page;
+            $scope.main.total = result.total;
+        });
+    };
+
+    $scope.$watch('id', function () {
+        $scope.loadPage();
+    });
+
+});
+
+app.service('subjectAssignedToService', function ($http) {
+    this.getTeachers = function (main, id) {
+        return $http.get('/subjects/' + id + '/assigned/info?page=' + main.page);
     };
 });
 
