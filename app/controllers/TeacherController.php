@@ -24,6 +24,7 @@
         public function __construct(Teacher $teacher)
         {
             $this->teacher = $teacher;
+            $this->beforeFilter('ajax', ['only' => 'getAllTeachers']);
         }
 
         /**
