@@ -8,6 +8,9 @@
      */
 
 
+    /**
+     * @brief Validation for alphabet, numbers and spaces
+     */
     Validator::extend('alpha_num_spaces', function ($attribute, $value) {
         return preg_match('/^[\pL\pN\s.]+$/u', $value);
     });
