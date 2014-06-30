@@ -11,6 +11,7 @@
     |
     */
 
+
     Route::get('/', function () {
         return View::make('hello');
     });
@@ -62,6 +63,17 @@
                 'as'   => 'all.classes',
                 'uses' => 'ClassDetailController@getAllClasses'
             ]);
+
+            Route::resource('students', 'StudentController');
+            Route::get('all/faculty/shift/batch', 'StudentController@getListsOfFacultyShiftAndBatch');
+            Route::get('all/students/{facultyId}/{shiftId}/{batch}', 'StudentController@getStudents');
+            Route::get('loading/spinner',
+                [
+                    'before' => 'ajax',
+                    function () {
+                        return View::make('loading');
+                    }
+                ]);
 
             Route::resource('teachers.subjects', 'AssignController', ['except' => ['show', 'update', 'edit']]);
         }
