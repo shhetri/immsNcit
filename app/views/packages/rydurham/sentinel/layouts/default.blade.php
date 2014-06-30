@@ -17,6 +17,7 @@
         <!-- Optional theme -->
         <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
         <link rel="stylesheet" href="{{ asset('css/chosen.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/select.css') }}">
         <link rel="stylesheet" href="{{ asset('css/myStyle.css') }}">
 
 		<style>
@@ -83,13 +84,13 @@
                             <a href="{{ route('teachers.index') }}">Teacher</a>
                         </li>
                         <li {{ (Request::is('subjects*'))? 'class="active"' : '' }}>
-                        <a href="{{ route('subjects.index') }}">Subject</a>
+                             <a href="{{ route('subjects.index') }}">Subject</a>
                         </li>
                         <li {{ (Request::is('classes*'))? 'class="active"' : '' }}>
-                        <a href="{{ route('classes.index') }}">Class</a>
+                            <a href="{{ route('classes.index') }}">Class</a>
                         </li>
-                        <li>
-                            <a href="#">Events</a>
+                        <li {{ (Request::is('students*'))? 'class="active"' : '' }}>
+                            <a href="{{ route('students.index') }}">Student</a>
                         </li>
                         <li>
                             <a href="#">About</a>
@@ -133,7 +134,10 @@
 		================================================== -->
 		<script src="{{ asset('packages/rydurham/sentinel/js/jquery-2.0.2.min.js') }}"></script>
 		<script src="{{asset('js/angular.min.js')}}"></script>
+		<script src="{{asset('js/angular-sanitize.js')}}"></script>
 		<script src="{{asset('js/chosen.jquery.min.js')}}"></script>
+		<script src="{{asset('js/select.js')}}"></script>
+		<script src="{{asset('js/spin.min.js')}}"></script>
 		<script src="{{asset('app/app.js')}}"></script>
 		<script src="{{ asset('packages/rydurham/sentinel/js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('packages/rydurham/sentinel/js/bootbox.min.js') }}"></script>
