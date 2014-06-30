@@ -1,5 +1,5 @@
 "use strict";
-var app = angular.module('app', []);
+var app = angular.module('app', ['ngSanitize', 'ui.select']);
 
 app.run(function ($rootScope) {
     $rootScope.main = {
@@ -115,6 +115,39 @@ app.service('subjectAssignedToService', function ($http) {
     };
 });
 
+app.controller('StudentController', function ($scope, studentService) {
+
+    $scope.faculty = {};
+    $scope.shift = {};
+    $scope.batch = {};
+    $scope.main.students = [];
+    studentService.getFacultyShiftAndBatch().success(function (result) {
+        $scope.info = result;
+        $scope.faculty.selected = $scope.info.faculty[0];
+        $scope.shift.selected = $scope.info.shift[0];
+        $scope.batch.selected = $scope.info.batch[0];
+    });
+
+    $scope.getStudents = function () {
+        $scope.viewLoading = true;
+        studentService.getStudents($scope.faculty.selected.id, $scope.shift.selected.id, $scope.batch.selected.id).success(function (result) {
+            $scope.main.students = result;
+            $scope.main.noStudents = $scope.main.students.length == 0;
+            $scope.viewLoading = false;
+        });
+    }
+});
+
+app.service('studentService', function ($http) {
+    this.getFacultyShiftAndBatch = function () {
+        return $http.get('all/faculty/shift/batch');
+    };
+
+    this.getStudents = function (faculty, shift, batch) {
+        return $http.get('all/students/' + faculty + '/' + shift + '/' + batch);
+    }
+});
+
 app.filter('capitalize', function () {
     return function (input, scope) {
         if (input != null)
@@ -127,3 +160,41 @@ app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 }]);
 
+app.config(function (uiSelectConfig) {
+    uiSelectConfig.theme = 'bootstrap';
+});
+
+app.directive('myLoadingSpinner', function () {
+    return {
+        restrict: 'A',
+        replace: true,
+        transclude: true,
+        scope: {
+            loading: '=myLoadingSpinner'
+        },
+        templateUrl: 'loading/spinner',
+        link: function (scope, element, attrs) {
+            var opts = {
+                lines: 11, // The number of lines to draw
+                length: 27, // The length of each line
+                width: 8, // The line thickness
+                radius: 1, // The radius of the inner circle
+                corners: 0.7, // Corner roundness (0..1)
+                rotate: 11, // The rotation offset
+                direction: 1, // 1: clockwise, -1: counterclockwise
+                color: '#BCBCBC', // #rgb or #rrggbb or array of colors
+                speed: 1, // Rounds per second
+                trail: 90, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false, // Whether to use hardware acceleration
+                className: 'spinner', // The CSS class to assign to the spinner
+                zIndex: 2e9, // The z-index (defaults to 2000000000)
+                top: '200%', // Top position relative to parent
+                left: '50%' // Left position relative to parent
+            };
+            var spinner = new Spinner(opts).spin();
+            var loadingContainer = element.find('.my-loading-spinner-container')[0];
+            loadingContainer.appendChild(spinner.el);
+        }
+    };
+});
