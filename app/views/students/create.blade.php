@@ -18,7 +18,8 @@
         </div>
         @else
             {{ Form::open(['route' => 'students.store', 'method' => 'post']) }}
-            <div class="form-group {{ ($errors->has('first_name'))? 'has-error' : '' }}">
+            {{ Form::hidden('hasFile','0') }}
+        <div class="form-group {{ ($errors->has('first_name'))? 'has-error' : '' }}">
                 {{ Form::label('first_name', 'First Name', ['class' => 'control-label']) }}
                 {{ Form::text('first_name', null, ['class' => 'form-control']) }}
                 {{ $errors->first('first_name','<p class="text-danger">:message</p>') }}
@@ -53,12 +54,24 @@
         {{ Form::close() }}
     </div>
     @if (isset($file) && $file == true)
-        <div class="col-md-5 col-md-offset-1">
-            <p class="help-block">Please fill the first row of the file with following header.</p>
+        <div class="col-md-5 col-md-offset-1 alert-warning">
+            <p class="help-block">Please fill the first row of the file with following headers.</p>
             <blockquote>
                 <label class="text-info">First Name</label> | <label class="text-info">Last Name</label> | <span class="text-info">Roll No</span>
             </blockquote>
         </div>
+    @if ( $errors->any() && ! $errors->has('file'))
+        <div class="col-md-offset-1 col-md-5 alert-danger" style="margin-top: 15px; padding: 8px;">
+            <label>Errors</label>
+            <ul>
+                @foreach($errors->all() as $message)
+                    <li>{{ $message }}</li>
+                @endforeach
+                {{ $errors->has('roll_no')? '<li>Error caused by Roll No - '.Session::get('roll_no').'</li>':'' }}
+            </ul>
+        </div>
+    @endif
+
     @endif
 </div>
 @stop
