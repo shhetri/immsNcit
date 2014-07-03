@@ -134,6 +134,22 @@
         }
 
         /**
+         * @brief Shows the form to register teacher login account
+         * @param $id
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+         */
+        public function register($id)
+        {
+            try {
+                $teacher = $this->teacher->findOrFail($id);
+
+                return View::make('Sentinel::users.create')->with('email', $teacher->email);
+            } catch (ModelNotFoundException $e) {
+                return Redirect::route('teachers.index')->with('error', 'Teacher not found.');
+            }
+        }
+
+        /**
          * @brief Get teachers when ajax call made by client
          * @return \Illuminate\Pagination\Paginator
          */
