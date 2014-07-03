@@ -15,7 +15,7 @@ Register
             <h4>Register New Account</h4>
 
             <div class="form-group {{ ($errors->has('email')) ? 'has-error' : '' }}">
-                {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'E-mail')) }}
+                {{ Form::text('email', isset($email)? $email : '', array('class' => 'form-control', 'placeholder' => 'E-mail')) }}
                 {{ ($errors->has('email') ? $errors->first('email') : '') }}
             </div>
 
