@@ -11,11 +11,6 @@
     |
     */
 
-
-    Route::get('/', function () {
-        return View::make('hello');
-    });
-
     Route::group(
         ['before' => 'Sentinel\auth'],
         function () {
@@ -31,6 +26,12 @@
     Route::group(
         ['before' => 'Sentinel\auth|check_role'],
         function () {
+            Route::get('home', [
+                'as' => 'home',
+                function () {
+                    return View::make('layout.admin.dashboard');
+                }
+            ]);
             Route::get('admin/dashboard', [
                 'as' => 'admin.dashboard',
                 function () {
@@ -42,6 +43,10 @@
             Route::get('all/teachers', [
                 'as'   => 'all.teachers',
                 'uses' => 'TeacherController@getAllTeachers'
+            ]);
+            Route::get('teachers/{teacherId}/register', [
+                'as'   => 'teachers.register',
+                'uses' => 'TeacherController@register'
             ]);
 
             Route::resource('subjects', 'SubjectController');
