@@ -47,6 +47,13 @@
         }
     });
 
+    Route::filter('check_userId', function () {
+        if ( ! Sentry::getUser()->hasAccess('super admin') && ! Sentry::getUser()->hasAccess('admin') ) {
+            if ( Route::input('users') != Session::get('userId') )
+                return Redirect::route('teacher.dashboard');
+        }
+    });
+
     App::before(function ($request) {
         //
     });
