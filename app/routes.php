@@ -16,9 +16,7 @@
         function () {
             Route::get('teacher/dashboard', [
                 'as' => 'teacher.dashboard',
-                function () {
-                    return View::make('layout.teacher.dashboard');
-                }
+                'uses'=>'DashboardController@teacherDashboard'
             ]);
         }
     );
@@ -28,15 +26,11 @@
         function () {
             Route::get('home', [
                 'as' => 'home',
-                function () {
-                    return View::make('layout.admin.dashboard');
-                }
+                'uses'=>'DashboardController@adminDashboard'
             ]);
             Route::get('admin/dashboard', [
                 'as' => 'admin.dashboard',
-                function () {
-                    return View::make('layout.admin.dashboard');
-                }
+                'uses'=>'DashboardController@adminDashboard'
             ]);
 
             Route::resource('teachers', 'TeacherController');
