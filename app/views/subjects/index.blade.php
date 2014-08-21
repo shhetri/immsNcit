@@ -26,6 +26,7 @@
                     <th>SN</th>
                     <th>Subject Name</th>
                     <th>Course Code</th>
+                    <th>Type</th>
                     <th>Edit</th>
                     <th class="text-center">Assigned To</th>
                 </tr>
@@ -35,6 +36,7 @@
                         <a data-ng-href="/subjects/@{{ subject.id }}">@{{ subject.subject_name | uppercase }}</a>
                     </td>
                     <td>@{{ subject.course_code | uppercase }}</td>
+                    <td>@{{ subject.type }}</td>
                     <td><a data-ng-href="/subjects/@{{ subject.id }}/edit"><span><i class="glyphicon glyphicon-edit"></i></span></a></td>
                     <td class="text-center"><a data-ng-href="/subjects/@{{ subject.id }}/teachers"><span><i class="glyphicon glyphicon-tasks"></i></span></a></td>
                 </tr>

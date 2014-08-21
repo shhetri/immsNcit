@@ -15,7 +15,7 @@
         /**
          * @var array Contains column names that can be filled by user
          */
-        protected $fillable = ['subject_name', 'course_code'];
+        protected $fillable = ['subject_name', 'course_code', 'type'];
 
         /**
          * @var array Contains the validation errors

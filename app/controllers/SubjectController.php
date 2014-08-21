@@ -134,7 +134,7 @@
          */
         public function getAllSubjects()
         {
-            return $this->subject->orderBy('subject_name')->paginate(10, ['id', 'subject_name', 'course_code']);
+            return $this->subject->orderBy('subject_name')->paginate(10, ['id', 'subject_name', 'course_code', 'type']);
         }
 
         /**

@@ -20,6 +20,10 @@
             {{ $errors->first('course_code','<p class="text-danger">:message</p>') }}
         </div>
         <div class="form-group">
+            {{ Form::label('type', 'Type', ['class' => 'control-label']) }}
+            {{ Form::select('type', ['Practical'=>'Practical','Non Practical'=>'Non Practical'] , null , ['class' => 'form-control chosen-select']) }}
+        </div>
+        <div class="form-group">
             {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
             {{ link_to_route('subjects.index','Cancel',null,['class'=>'btn btn-warning']) }}
         </div>
