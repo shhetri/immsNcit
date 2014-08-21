@@ -31,7 +31,7 @@
          * @param Subject     $subject
          * @param ClassDetail $classDetail
          */
-        function __construct(Teacher $teacher, Subject $subject, ClassDetail $classDetail)
+        public function __construct(Teacher $teacher, Subject $subject, ClassDetail $classDetail)
         {
             $this->teacher     = $teacher;
             $this->subject     = $subject;
@@ -116,7 +116,7 @@
         }
 
         /**
-         * @brief Get the all the batches a teacher taught in
+         * @brief Get all the batches a teacher taught in
          * @param $teacher
          * @return mixed
          */

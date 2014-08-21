@@ -38,7 +38,7 @@
          * @param Semester    $semester
          * @param Shift       $shift
          */
-        function __construct(ClassDetail $classDetail, Faculty $faculty, Semester $semester, Shift $shift)
+        public function __construct(ClassDetail $classDetail, Faculty $faculty, Semester $semester, Shift $shift)
         {
             $this->classDetail = $classDetail;
             $this->faculty     = $faculty;
