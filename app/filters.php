@@ -54,6 +54,16 @@
         }
     });
 
+    Route::filter('check_regAct', function () {
+        $teacher = Teacher::where('email', '=', Session::get('email'))->distinct()->first();
+        if ( $teacher == null || $teacher->status == "Inactive" ) {
+            $registered = false;
+
+            return View::make('layout.teacher.dashboard', compact('registered'));
+        }
+        Session::put('teacher', $teacher);
+    });
+
     App::before(function ($request) {
         //
     });
