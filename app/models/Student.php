@@ -108,4 +108,13 @@
             return true;
         }
 
+        /**
+         * @brief Create one-to-many relationship with mark
+         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         */
+        public function marks()
+        {
+            return $this->hasMany('Mark');
+        }
+
     }

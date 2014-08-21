@@ -15,8 +15,33 @@
         ['before' => 'Sentinel\auth'],
         function () {
             Route::get('teacher/dashboard', [
-                'as' => 'teacher.dashboard',
-                'uses'=>'DashboardController@teacherDashboard'
+                'as'   => 'teacher.dashboard',
+                'uses' => 'DashboardController@teacherDashboard'
+            ]);
+
+            Route::get('teacher/{batch}/subject', [
+                'as'   => 'teacher.subject',
+                'uses' => 'DashboardController@teachersSubjects'
+            ]);
+
+            Route::get('marks/{classDetailId}/{subjectId}', [
+                'as'   => 'subject.marks',
+                'uses' => 'MarkController@index'
+            ]);
+
+            Route::post('marks', [
+                'as'   => 'marks.store',
+                'uses' => 'MarkController@store'
+            ]);
+
+            Route::patch('marks', [
+                'as'   => 'marks.update',
+                'uses' => 'MarkController@update'
+            ]);
+
+            Route::post('marks/{classDetailId}/{subjectId}/export', [
+                'as'   => 'marks.export',
+                'uses' => 'MarkController@export'
             ]);
         }
     );
@@ -25,12 +50,12 @@
         ['before' => 'Sentinel\auth|check_role'],
         function () {
             Route::get('home', [
-                'as' => 'home',
-                'uses'=>'DashboardController@adminDashboard'
+                'as'   => 'home',
+                'uses' => 'DashboardController@adminDashboard'
             ]);
             Route::get('admin/dashboard', [
-                'as' => 'admin.dashboard',
-                'uses'=>'DashboardController@adminDashboard'
+                'as'   => 'admin.dashboard',
+                'uses' => 'DashboardController@adminDashboard'
             ]);
 
             Route::resource('teachers', 'TeacherController');
