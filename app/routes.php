@@ -24,25 +24,45 @@
                 'uses' => 'DashboardController@teachersSubjects'
             ]);
 
-            Route::get('marks/{classDetailId}/{subjectId}', [
-                'as'   => 'subject.marks',
-                'uses' => 'MarkController@index'
-            ]);
+            Route::group(
+                ['before' => 'check_regAct'],
+                function () {
+                    Route::get('marks/{classDetailId}/{subjectId}', [
+                        'as'   => 'subject.marks',
+                        'uses' => 'MarkController@index'
+                    ]);
 
-            Route::post('marks', [
-                'as'   => 'marks.store',
-                'uses' => 'MarkController@store'
-            ]);
+                    Route::post('marks', [
+                        'as'   => 'marks.store',
+                        'uses' => 'MarkController@store'
+                    ]);
 
-            Route::patch('marks', [
-                'as'   => 'marks.update',
-                'uses' => 'MarkController@update'
-            ]);
+                    Route::patch('marks', [
+                        'as'   => 'marks.update',
+                        'uses' => 'MarkController@update'
+                    ]);
 
-            Route::post('marks/{classDetailId}/{subjectId}/export', [
-                'as'   => 'marks.export',
-                'uses' => 'MarkController@export'
-            ]);
+                    Route::post('marks/{classDetailId}/{subjectId}/export', [
+                        'as'   => 'marks.export',
+                        'uses' => 'MarkController@export'
+                    ]);
+
+                    Route::resource('notices', 'NoticeController', ['except' => ['show']]);
+
+                    Route::get('profiles', [
+                        'as'   => 'profiles.index',
+                        'uses' => 'ProfileController@index'
+                    ]);
+                    Route::patch('profiles/update', [
+                        'as'   => 'profiles.update',
+                        'uses' => 'ProfileController@update'
+                    ]);
+                    Route::get('profiles/edit', [
+                        'as'   => 'profiles.edit',
+                        'uses' => 'ProfileController@edit'
+                    ]);
+                }
+            );
         }
     );
 
