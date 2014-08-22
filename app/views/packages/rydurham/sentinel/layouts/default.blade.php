@@ -61,10 +61,13 @@
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
 	            @if (Sentry::check())
-				<li {{ (Request::is('users/show/' . Session::get('userId')) ? 'class="active"' : '') }}><a href="/users/{{ Session::get('userId') }}">@if(Session::get('first_name') && Session::get('last_name')) {{ Session::get('first_name').' '.Session::get('last_name') }} @else {{ Session::get('email') }} @endif</a></li>
+				<li {{ (Request::is('users/show/' . Session::get('userId')) ? 'class="active"' : '') }}>
+                  <a href="{{ Sentry::getUser()->hasAccess('admin')? '/users/'.Session::get('userId') : route('profiles.index') }}">@if(Session::get('first_name') && Session::get('last_name')) {{ Session::get('first_name').' '.Session::get('last_name') }} @else {{ Session::get('email') }} @endif</a>
+                 </li>
                     @if (Sentry::getUser()->hasAccess('admin'))
                     <li {{ (Request::is('register') ? 'class="active"' : '') }}><a href="{{ URL::route('Sentinel\register') }}">Register</a></li>
                     @endif
+                <li><a href="{{ route('teacher.dashboard') }}">Teacher Dashboard</a></li>
                 <li><a href="{{ URL::route('Sentinel\logout') }}">Logout</a></li>
 				@endif
 	          </ul>
