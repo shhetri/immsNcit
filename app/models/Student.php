@@ -49,7 +49,7 @@
         ];
 
         /**
-         * @brief Create many-to-one relationship with faculty
+         * @brief Create many-to-one relationship with Faculty model
          * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
          */
         public function faculty()
@@ -58,7 +58,7 @@
         }
 
         /**
-         * @brief Create many-to-one relationship with shift
+         * @brief Create many-to-one relationship with Shift model
          * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
          */
         public function shift()
@@ -109,7 +109,7 @@
         }
 
         /**
-         * @brief Create one-to-many relationship with mark
+         * @brief Create one-to-many relationship with Mark model
          * @return \Illuminate\Database\Eloquent\Relations\HasMany
          */
         public function marks()

@@ -49,7 +49,7 @@
         }
 
         /**
-         * @brief Creates many-to-many relationship with subjects and also join with classes using class_detail_id
+         * @brief Creates many-to-many relationship with Teacher model and also join with classes using class_detail_id
          * @return mixed
          */
         public function teachers()
