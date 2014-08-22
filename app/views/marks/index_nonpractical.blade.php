@@ -50,7 +50,7 @@
 
     </table>
 
-    <a href="{{ route('marks.export',[$class_detail->id, $subject->id]) }}" data-method="post" data-token="{{ Session::getToken() }}" class="btn btn-primary">Export</a>
+    <a href="{{ route('marks.export',[$class_detail->id, $subject->id]) }}" data-method="post" data-token="{{ Session::getToken() }}" class="btn btn-primary"><i class="glyphicon glyphicon-export"></i> Export</a>
     {{ Form::submit('Update Marks', ['class' => 'pull-right btn btn-info']) }}
     {{ Form::close() }}
     @else
