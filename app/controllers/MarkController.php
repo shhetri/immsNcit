@@ -168,7 +168,7 @@
             Excel::create($class_detail->title . " " . $class_detail->batch . "-" . Str::upper($subject->subject_name) . " Marks", function ($excel) use ($studentsWithMarks, $subject) {
                 $excel->setCreator(Session::get('first_name') . " " . Session::get('last_name'))->setCompany('NCIT');
 
-                $excel->sheet(Str::upper($subject->subject_name) . " Marks", function ($sheet) use ($studentsWithMarks, $subject) {
+                $excel->sheet(Str::limit(Str::upper($subject->subject_name),28,"..."), function ($sheet) use ($studentsWithMarks, $subject) {
                     $sheet->setStyle(array(
                         'font' => array(
                             'name' => 'Calibri',
