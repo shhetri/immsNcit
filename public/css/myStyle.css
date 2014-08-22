@@ -7,3 +7,6 @@
 i.glyphicon {
     font-size: 1.4em;
 }
+textarea[name='body']{
+    resize: none;
+}
