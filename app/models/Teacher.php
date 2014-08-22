@@ -55,7 +55,7 @@
         }
 
         /**
-         * @brief Creates many-to-many relationship with teachers and also join with classes using class_detail_id
+         * @brief Creates many-to-many relationship with Subject Model and also join with classes using class_detail_id
          * @return mixed
          */
         public function subjects()
@@ -63,6 +63,15 @@
             return $this->belongsToMany('Subject')->withPivot('class_detail_id')
                 ->join('class_details', 'class_detail_id', '=', 'class_details.id');
             //->select('class_details.title AS pivot_title','class_details.batch AS pivot_batch');
+        }
+
+        /**
+         * @brief Creates one-to-many relationship with Notice Model
+         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         */
+        public function notices()
+        {
+            return $this->hasMany('Notice');
         }
 
     }
