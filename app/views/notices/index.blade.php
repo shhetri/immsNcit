@@ -7,12 +7,12 @@
 
 @section('content')
     <div class="well col-md-8 col-md-offset-2">
-        <div class="form-group">
-            <a href="{{ route('notices.create') }}" class="btn btn-primary">Add new</a>
-        </div>
         @if ($notices->isEmpty())
             <label class="alert alert-link">There are no notices to display. <a href="{{ route('notices.create') }}"><strong>Add</strong></a> new notice.</label>
         @else
+        <div class="form-group">
+            <a href="{{ route('notices.create') }}" class="btn btn-primary">Add new</a>
+        </div>
             @if ($notices->getTotal()>10)
             {{ $notices->links() }}
             @endif
