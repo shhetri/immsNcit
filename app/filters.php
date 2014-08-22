@@ -24,6 +24,8 @@
         'check_role',
         function () {
             if ( ! Sentry::getUser()->hasAccess('super admin') && ! Sentry::getUser()->hasAccess('admin') ) {
+                Session::reflash();
+
                 return Redirect::route('teacher.dashboard');
             }
         }
