@@ -27,16 +27,22 @@
         private $classDetail;
 
         /**
+         * @var Mark
+         */
+        private $mark;
+
+        /**
          * @param Teacher     $teacher
          * @param Subject     $subject
          * @param ClassDetail $classDetail
          */
-        public function __construct(Teacher $teacher, Subject $subject, ClassDetail $classDetail)
+        public function __construct(Teacher $teacher, Subject $subject, ClassDetail $classDetail, Mark $mark)
         {
             $this->teacher     = $teacher;
             $this->subject     = $subject;
             $this->classDetail = $classDetail;
             $this->beforeFilter('class.subject.isEmpty', ['only' => ['create']]);
+            $this->mark = $mark;
         }
 
         /**
@@ -89,6 +95,7 @@
                 $teacher = $this->teacher->find($id);
                 try {
                     $teacher->subjects()->attach(Input::get('subject_id'), ['class_detail_id' => Input::get('class_detail_id')]);
+                    $this->mark->where('subject_id', '=', Input::get('subject_id'))->where('class_detail_id', '=', Input::get('class_detail_id'))->update(['teacher_id' => $id]);
 
                     return Redirect::route('teachers.subjects.index', $teacher->id)->with('success', 'Subject successfully assigned.');
 
