@@ -10,7 +10,15 @@
      */
     class ViewController extends BaseController {
 
+        /**
+         * @var Notice
+         */
         private $notice;
+
+        /**
+         * @var Teacher
+         */
+        private $teacher;
 
         /**
          * @var Subject
@@ -22,17 +30,32 @@
          */
         private $classDetail;
 
+        /**
+         * @var Student
+         */
         private $student;
 
-        public function __construct(Notice $notice, Subject $subject, ClassDetail $classDetail, Student $student)
+        /**
+         * @param Notice      $notice
+         * @param Subject     $subject
+         * @param ClassDetail $classDetail
+         * @param Student     $student
+         * @param Teacher     $teacher
+         */
+        public function __construct(Notice $notice, Subject $subject, ClassDetail $classDetail, Student $student, Teacher $teacher)
         {
             $this->notice      = $notice;
             $this->subject     = $subject;
             $this->classDetail = $classDetail;
             $this->student     = $student;
-            $this->beforeFilter('ajax', ['only' => ['getMarks']]);
+            $this->teacher     = $teacher;
+            $this->beforeFilter('ajax', ['only' => ['getMarks', 'allTeachers', 'teacherDetail']]);
         }
 
+        /**
+         * @brief Displays the view with class, subjects and notices
+         * @return \Illuminate\View\View
+         */
         public function index()
         {
             $notices = $this->notice->with(['teachers' => function ($query) {
@@ -43,6 +66,10 @@
             return View::make('student_views.home', compact('notices', 'subjects', 'classes'));
         }
 
+        /**
+         * @brief Displays the view containing all the notices
+         * @return \Illuminate\View\View
+         */
         public function notices()
         {
             $notices = $this->notice->with(['teachers' => function ($query) {
@@ -52,6 +79,10 @@
             return View::make('student_views.notices', compact('notices'));
         }
 
+        /**
+         * @brief Displays the view containg the marks of a subject
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+         */
         public function marks()
         {
             try {
@@ -74,6 +105,12 @@
 
         }
 
+        /**
+         * @brief Get the marks of the student of a particular subject on ajax call
+         * @param $cdId
+         * @param $sbjId
+         * @return \Illuminate\Database\Eloquent\Collection|static[]
+         */
         public function getMarks($cdId, $sbjId)
         {
             $class_detail      = $this->classDetail->find($cdId);
@@ -114,5 +151,33 @@
                 ->where('shift_id', '=', $class_detail->shift_id)
                 ->where('batch', '=', $class_detail->batch)
                 ->get();
+        }
+
+        /**
+         * @brief Displays the view containing all the teachers
+         * @return \Illuminate\View\View
+         */
+        public function teachers()
+        {
+            return View::make('student_views.teachers');
+        }
+
+        /**
+         * @brief Gets the list of all the teachers on ajax call
+         * @return \Illuminate\Pagination\Paginator
+         */
+        public function allTeachers()
+        {
+            return $this->teacher->orderBy('first_name', 'asc')->paginate(10, ['id', 'first_name', 'last_name']);
+        }
+
+        /**
+         * @brief Gets the detail of a specific teacher on ajax call
+         * @param $teacherId
+         * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|static
+         */
+        public function teacherDetail($teacherId)
+        {
+            return $this->teacher->find($teacherId, ['first_name', 'last_name', 'email', 'phone_no']);
         }
     }
