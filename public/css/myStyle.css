@@ -1,12 +1,135 @@
-.action_confirm{
+.action_confirm {
     cursor: pointer;
 }
-.pager li a{
+
+.pager li a {
     cursor: pointer;
 }
+
 i.glyphicon {
     font-size: 1.4em;
 }
-textarea[name='body']{
+
+textarea[name='body'] {
     resize: none;
+}
+
+.lockscreen {
+    background: url('/img/Imms-BG.jpg') repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* Remove the background from the body element */
+.lockscreen > body {
+    background: transparent;
+}
+
+/* We will put the dynamically generated digital clock here */
+.lockscreen .headline {
+    color: #fff;
+    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased !important;
+    opacity: 0.8;
+    margin: 10px 0 30px 0;
+    font-size: 90px;
+}
+
+@media screen and (max-width: 480px) {
+    .lockscreen .headline {
+        font-size: 60px;
+        margin-bottom: 40px;
+    }
+}
+
+.small-box {
+    position: relative;
+    display: block;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+.small-box > .inner {
+    padding: 10px;
+}
+
+.small-box > .small-box-footer {
+    position: relative;
+    text-align: center;
+    padding: 3px 0;
+    color: #fff;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.small-box > .small-box-footer:hover {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.small-box h3 {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    padding: 0;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.small-box p {
+    font-size: 15px;
+    color: #000000;
+}
+
+.small-box p > small {
+    display: block;
+    color: #000;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.small-box h3,
+.small-box p {
+    z-index: 5px;
+}
+
+.small-box:hover {
+    text-decoration: none;
+    color: #f9f9f9;
+}
+
+@media screen and (max-width: 480px) {
+    .small-box {
+        text-align: center;
+    }
+
+    .small-box p {
+        font-size: 12px;
+    }
+}
+
+.bg-aqua,
+.bg-purple,
+.bg-teal {
+    color: #f9f9f9;
+}
+
+.bg-aqua {
+    background-color: #00c0ef !important;
+}
+
+.bg-teal {
+    background-color: #39cccc !important;
+}
+
+.bg-purple {
+    background-color: #932ab6 !important;
 }
