@@ -95,15 +95,6 @@
                         <li {{ (Request::is('students*'))? 'class="active"' : '' }}>
                             <a href="{{ route('students.index') }}">Student</a>
                         </li>
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Services</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
                     </ul>
                 </div>
                 <div id="page-content-wrapper">
