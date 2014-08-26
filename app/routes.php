@@ -33,6 +33,29 @@
                 'as'   => 'view.getMarks',
                 'uses' => 'ViewController@getMarks'
             ]);
+
+            Route::get('teachers', [
+                'as'   => 'view.teachers',
+                'uses' => 'ViewController@teachers'
+            ]);
+
+            Route::get('teachers/all', [
+                'as'   => 'view.teachers.all',
+                'uses' => 'ViewController@allTeachers'
+            ]);
+
+            Route::get('/teacherDetail/{teacherId}', [
+                'as'   => 'view.teacherDetail',
+                'uses' => 'ViewController@teacherDetail'
+            ]);
+
+            Route::get('loading/spinner',
+                [
+                    'before' => 'ajax',
+                    function () {
+                        return View::make('loading');
+                    }
+                ]);
         });
 
     Route::group(

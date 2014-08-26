@@ -52,7 +52,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="">List Teachers</a></li>
+                <li class="{{ Request::is('view/teachers')? 'active' : '' }}"><a href="{{ route('view.teachers') }}">List Teachers</a></li>
                 <li class="{{ Request::is('view/notices')? 'active' : '' }}"><a href="{{ route('view.notices') }}">Notice</a></li>
             </ul>
         </div><!--/.nav-collapse -->
