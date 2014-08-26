@@ -47,13 +47,4 @@
             return true;
         }
 
-        /**
-         * @brief Establish many-to-one relationship with Teacher model
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-         */
-        public function teachers()
-        {
-            return $this->belongsTo('Teacher','teacher_id');
-        }
-
     }
