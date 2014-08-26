@@ -12,6 +12,30 @@
     */
 
     Route::group(
+        ['prefix' => 'view'],
+        function () {
+            Route::get('home', [
+                'as'   => 'view.home',
+                'uses' => 'ViewController@index'
+            ]);
+
+            Route::get('notices', [
+                'as'   => 'view.notices',
+                'uses' => 'ViewController@notices'
+            ]);
+
+            Route::get('marks', [
+                'as'   => 'view.marks',
+                'uses' => 'ViewController@marks'
+            ]);
+
+            Route::get('get/marks/{classDetailId}/{subjectId}', [
+                'as'   => 'view.getMarks',
+                'uses' => 'ViewController@getMarks'
+            ]);
+        });
+
+    Route::group(
         ['before' => 'Sentinel\auth'],
         function () {
             Route::get('teacher/dashboard', [
@@ -125,8 +149,8 @@
 
     Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 
-    Route::any('/', function () {
-        return "anything";
+    Route::get('/', function () {
+        return View::make('home');
     });
 
     //DB::listen(function($sql){
