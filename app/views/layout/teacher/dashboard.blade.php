@@ -7,7 +7,9 @@
 
 @section('content')
     @if($registered == true)
-        <div class="col-md-7 text-center text-success alert-success"><i class="glyphicon glyphicon-dashboard"></i>Welcome to dashboard</div>
+        <div class="col-md-7">
+            <img src="{{ asset('img/teacher_dashboard.jpg') }}" class="img img-responsive img-circle">
+        </div>
         <div class="col-md-5">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -31,6 +33,6 @@
         </div>
 
     @else
-        <h3 class="text-center text-success alert-danger">You are not registered as a teacher.</h3>
+        <h3 class="alert alert-danger text-center">You are not registered as a teacher.</h3>
     @endif
 @stop
