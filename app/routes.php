@@ -176,6 +176,8 @@
         return View::make('home');
     });
 
-    //DB::listen(function($sql){
-    //    var_dump($sql);
-    //});
+    App::missing(function ($exception) {
+        // shows an error page (app/views/error.blade.php)
+        // returns a page not found error
+        return Response::view('error', array(), 404);
+    });
