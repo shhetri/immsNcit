@@ -148,7 +148,7 @@
         private function getListsOfSubjectsAndClasses()
         {
             $subjects         = $this->subject->orderBy('subject_name', 'asc')->lists('subject_name', 'id');
-            $classes          = $this->classDetail->orderBy('title', 'asc')->get();
+            $classes          = $this->classDetail->orderBy('batch', 'desc')->get();
             $classesWithBatch = $classes->lists('title_with_batch', 'id');
 
             return array($subjects, $classesWithBatch);
